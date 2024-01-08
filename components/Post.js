@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import Image from 'next/image'
 import cn from 'classnames'
 import { useConfig } from '@/lib/config'
 import useTheme from '@/lib/theme'
@@ -21,7 +20,7 @@ import TableOfContents from '@/components/TableOfContents'
  */
 export default function Post (props) {
   const BLOG = useConfig()
-  const { post, blockMap, emailHash, fullWidth = false } = props
+  const { post, blockMap, fullWidth = false } = props
   const { dark } = useTheme()
 
   return (
@@ -39,13 +38,6 @@ export default function Post (props) {
         )}>
           <div className="flex mb-4">
             <a href={BLOG.socialLink || '#'} className="flex">
-              <Image
-                alt={BLOG.author}
-                width={24}
-                height={24}
-                src={`https://gravatar.com/avatar/${emailHash}`}
-                className="rounded-full"
-              />
               <p className="ml-2 md:block">{BLOG.author}</p>
             </a>
             <span className="block">&nbsp;/&nbsp;</span>
@@ -80,6 +72,5 @@ export default function Post (props) {
 Post.propTypes = {
   post: PropTypes.object.isRequired,
   blockMap: PropTypes.object.isRequired,
-  emailHash: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool
 }
