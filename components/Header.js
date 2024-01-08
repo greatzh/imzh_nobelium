@@ -1,6 +1,5 @@
 import { forwardRef, useCallback, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
-import Image from 'next/image'
 import { useConfig } from '@/lib/config'
 import { useLocale } from '@/lib/locale'
 import useTheme from '@/lib/theme'
@@ -35,18 +34,6 @@ const NavBar = () => {
 export default function Header ({ navBarTitle, fullWidth }) {
   const BLOG = useConfig()
   const { dark } = useTheme()
-
-  // Favicon
-
-  const resolveFavicon = fallback => !fallback && dark ? '/favicon.dark.png' : '/favicon.png'
-  const [favicon, _setFavicon] = useState(resolveFavicon())
-  const setFavicon = fallback => _setFavicon(resolveFavicon(fallback))
-
-  useEffect(
-    () => setFavicon(),
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [dark]
-  )
 
   const useSticky = !BLOG.autoCollapsedNavBar
   const navRef = useRef(/** @type {HTMLDivElement} */ undefined)
@@ -102,13 +89,6 @@ export default function Header ({ navBarTitle, fullWidth }) {
         </svg>
         <div className="flex items-center">
           <Link href="/" aria-label={BLOG.title}>
-            <Image
-              src={favicon}
-              width={24}
-              height={24}
-              alt={BLOG.title}
-              onError={() => setFavicon(true)}
-            /> 
             <HeaderName
               ref={titleRef}
               siteTitle={BLOG.title}
