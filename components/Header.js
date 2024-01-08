@@ -108,15 +108,15 @@ export default function Header ({ navBarTitle, fullWidth }) {
               height={24}
               alt={BLOG.title}
               onError={() => setFavicon(true)}
+            /> 
+            <HeaderName
+              ref={titleRef}
+              siteTitle={BLOG.title}
+              siteDescription={BLOG.description}
+              postTitle={navBarTitle}
+              onClick={handleClickHeader}
             />
           </Link>
-          <HeaderName
-            ref={titleRef}
-            siteTitle={BLOG.title}
-            siteDescription={BLOG.description}
-            postTitle={navBarTitle}
-            onClick={handleClickHeader}
-          />
         </div>
         <NavBar />
       </div>
