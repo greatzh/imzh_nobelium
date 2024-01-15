@@ -1,12 +1,9 @@
-import PropTypes from 'prop-types'
 import FormattedDate from "@/components/FormattedDate";
 import { useConfig } from "@/lib/config";
-import NotionRenderer from '@/components/NotionRenderer'
 import Link from "next/link";
 
-const BlogPost = ({ props }) => {
+const BlogPost = ({ post }) => {
   const BLOG = useConfig();
-  const {post, blockMap } = props
 
   return (
     <Link href={`${BLOG.path}/${post.slug}`}>
@@ -28,10 +25,5 @@ const BlogPost = ({ props }) => {
     </Link>
   );
 };
-
-BlogPost.propTypes = {
-  post: PropTypes.object.isRequired,
-  blockMap: PropTypes.object.isRequired
-}
 
 export default BlogPost;
