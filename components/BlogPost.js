@@ -1,9 +1,12 @@
+import PropTypes from 'prop-types'
 import FormattedDate from "@/components/FormattedDate";
 import { useConfig } from "@/lib/config";
+import NotionRenderer from '@/components/NotionRenderer'
 import Link from "next/link";
 
-const BlogPost = ({ post }) => {
+const BlogPost = ({ props }) => {
   const BLOG = useConfig();
+  const {post, blockMap } = props
 
   return (
     <Link href={`${BLOG.path}/${post.slug}`}>
@@ -16,6 +19,11 @@ const BlogPost = ({ post }) => {
             {post.title}
           </h2>
         </header>
+        <div className="self-stretch -mt-4 flex flex-col items-center lg:flex-row lg:items-stretch">
+          <div className={'flex-none w-full max-w-2xl px-4'}>
+            <NotionRenderer recordMap={blockMap} fullPage={false} darkMode={dark} />
+          </div>
+        </div>
         <main>
           <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300">
             {post.summary}
@@ -25,5 +33,10 @@ const BlogPost = ({ post }) => {
     </Link>
   );
 };
+
+BlogPost.propTypes = {
+  post: PropTypes.object.isRequired,
+  blockMap: PropTypes.object.isRequired
+}
 
 export default BlogPost;
