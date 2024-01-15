@@ -21,7 +21,7 @@ const BlogPost = ({ props }) => {
         </header>
         <main>
           <p className="hidden md:block leading-8 text-gray-700 dark:text-gray-300">
-            <NotionRenderer recordMap={blockMap} fullPage={false} darkMode={dark} />
+            {post.summary}
           </p>
         </main>
       </article>
